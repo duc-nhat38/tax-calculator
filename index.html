@@ -5,9 +5,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Tax Calculator</title>
+    <title>Tính toán thuế trực tuyến - Chính xác và nhanh chóng theo luật thuế mới nhất</title>
+
+    <!-- Meta Tags -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Tính toán thuế trực tuyến - Chính xác và nhanh chóng theo luật thuế mới nhất">
+    <meta property="og:description"
+        content="Tính toán thuế thu nhập cá nhân theo quy định pháp luật Việt Nam nhanh chóng và chính xác chỉ trong vài bước.">
+    <meta property="og:image" content="URL của hình ảnh">
+    <meta property="og:url" content="URL của trang">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tính toán thuế trực tuyến - Chính xác và nhanh chóng theo luật thuế mới nhất">
+    <meta name="twitter:description"
+        content="Tính toán thuế thu nhập cá nhân theo quy định pháp luật Việt Nam nhanh chóng và chính xác chỉ trong vài bước.">
+    <meta name="twitter:image" content="URL của hình ảnh">
+
     <!-- CSS files -->
-    <link href="./dist/css/index.min.css?version=1727976439" rel="stylesheet" />
+    <link href="./dist/css/index.min.css?version=1728835534" rel="stylesheet" />
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -27,16 +42,16 @@
         <div class="sticky-top">
             <header class="navbar navbar-expand-md sticky-top d-print-none" data-bs-theme="dark">
                 <div class="container-xl">
+                    <div class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                        <a href="/">
+                            <img src="./dist/images/logo.svg?version=1728835534" width="110" height="32"
+                                alt="Công ty TNHH Thương Mại Dịch Vụ Truyền Thông Snaps" class="navbar-brand-image">
+                        </a>
+                    </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
                         aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                        <a href="/">
-                            <img src="./dist/images/logo.svg?version=1727976439" width="110" height="32" alt="Tabler"
-                                class="navbar-brand-image">
-                        </a>
-                    </h1>
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                             <ul class="navbar-nav">
@@ -71,9 +86,9 @@
                     <div class="row g-2 align-items-center">
                         <div class="col">
                             <!-- Page title -->
-                            <h2 class="page-title">
-                                Tiêu đề page
-                            </h2>
+                            <h1 class="page-title">
+                                Tính toán thuế trực tuyến - Chính xác và nhanh chóng theo luật thuế mới nhất
+                            </h1>
                         </div>
                     </div>
                 </div>
@@ -82,210 +97,214 @@
             <div class="page-body">
                 <div class="container-xl">
                     <div class="row row-deck row-cards">
-                        <div class="col-lg-6 d-grid gap-2">
+                        <div class="col-md-6 d-grid gap-2">
                             <div class="card">
+                                <div class="card-header border-0">
+                                    <h3 class="card-title">Thông tin thu nhập</h3>
+                                </div>
                                 <div class="card-body">
-                                    <h3 class="card-title">Tiêu đề form nhập lương</h3>
                                     <div class="p-3 pt-0">
-                                        <form action="#" method="get" autocomplete="off">
+                                        <form action="#" method="get" class="js-tax-form">
                                             <div class="mb-3">
-                                                <label class="form-label required">Input</label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Input placeholder..." autocomplete="off">
+                                                <label class="form-label required">Thu nhập chính</label>
+                                                <div class="input-group input-group-flat">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Thu nhập chính..." name="main_income">
+                                                    <span class="input-group-text fs-4"
+                                                        onclick="this.previousElementSibling.focus()">VND</span>
+                                                </div>
+                                                <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Select</label>
-                                                <select name="user[month]" class="form-select">
-                                                    <option value="">Month</option>
-                                                    <option value="1">January</option>
-                                                    <option value="2">February</option>
-                                                    <option value="3">March</option>
-                                                    <option value="4">April</option>
-                                                    <option value="5">May</option>
-                                                    <option selected="selected" value="6">June</option>
-                                                    <option value="7">July</option>
-                                                    <option value="8">August</option>
-                                                    <option value="9">September</option>
-                                                    <option value="10">October</option>
-                                                    <option value="11">November</option>
-                                                    <option value="12">December</option>
+                                                <label class="form-label">Lương đóng bảo hiểm</label>
+                                                <div class="input-group input-group-flat">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Lương đóng bảo hiểm..." name="insurance_salary"
+                                                        data-mask-placeholder="Lương đóng bảo hiểm...">
+                                                    <span class="input-group-text fs-4"
+                                                        onclick="this.previousElementSibling.focus()">VND</span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Thu nhập phụ</label>
+                                                <div class="input-group input-group-flat">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Thu nhập phụ 1..." name="secondary_income_1">
+                                                    <span class="input-group-text fs-4"
+                                                        onclick="this.previousElementSibling.focus()">VND</span>
+                                                </div>
+                                            </div>
+                                            <div class="" data-js-id="other-income-container">
+                                                <!-- other income area -->
+                                            </div>
+                                            <div class="mb-3 text-end">
+                                                <button type="button"
+                                                    class="btn btn-outline-yellow js-add-secondary-income-btn">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        class="icon" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M12 5l0 14" />
+                                                        <path d="M5 12l14 0" />
+                                                    </svg>
+                                                    Thêm thu nhập phụ
+                                                </button>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label required">Khu vực sinh sống</label>
+                                                <select name="area" class="form-select">
+                                                    <option value="1">Khu vực I</option>
+                                                    <option value="2">Khu vực II</option>
+                                                    <option value="3">Khu vực III</option>
+                                                    <option value="4">Khu vực IV</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <div class="form-label">Inline Checkboxes</div>
-                                                <div>
-                                                    <label class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox">
-                                                        <span class="form-check-label">Option 1</span>
-                                                    </label>
-                                                    <label class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox">
-                                                        <span class="form-check-label">Option 2</span>
-                                                    </label>
-                                                    <label class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" checked>
-                                                        <span class="form-check-label">Option 3</span>
-                                                    </label>
+                                                <label class="form-label">Số người thân phụ thuộc</label>
+                                                <div class="input-group input-group-flat">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Số người thân phụ thuộc..."
+                                                        name="dependent_deduction" value="0">
                                                 </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <div class="form-label">Inline Radios</div>
-                                                <div>
-                                                    <label class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="radios-inline" checked>
-                                                        <span class="form-check-label">Option 1</span>
-                                                    </label>
-                                                    <label class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="radios-inline">
-                                                        <span class="form-check-label">Option 2</span>
-                                                    </label>
-                                                    <label class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="radios-inline">
-                                                        <span class="form-check-label">Option 3</span>
-                                                    </label>
-                                                </div>
+                                            <div class="form-footer">
+                                                <button type="submit" class="btn btn-primary w-100 js-calculator-btn">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        class="icon" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-tax">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path
+                                                            d="M8.487 21h7.026a4 4 0 0 0 3.808 -5.224l-1.706 -5.306a5 5 0 0 0 -4.76 -3.47h-1.71a5 5 0 0 0 -4.76 3.47l-1.706 5.306a4 4 0 0 0 3.808 5.224" />
+                                                        <path d="M15 3q -1 4 -3 4t -3 -4z" />
+                                                        <path
+                                                            d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" />
+                                                        <path d="M12 10v1" />
+                                                        <path d="M12 17v1" />
+                                                    </svg>
+                                                    Tính thuế
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div
-                                    class="form-body d-flex flex-column d-grid gap-3 gap-sm-5 py-3 px-3 px-sm-0 align-items-center justify-content-center row flex-row-reverse">
-                                    <div class="col-12 col-sm-4 min-vw-33">
-                                        <button type="button" class="btn btn-primary w-100">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="icon icon-tabler icons-tabler-outline icon-tabler-tax">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path
-                                                    d="M8.487 21h7.026a4 4 0 0 0 3.808 -5.224l-1.706 -5.306a5 5 0 0 0 -4.76 -3.47h-1.71a5 5 0 0 0 -4.76 3.47l-1.706 5.306a4 4 0 0 0 3.808 5.224" />
-                                                <path d="M15 3q -1 4 -3 4t -3 -4z" />
-                                                <path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" />
-                                                <path d="M12 10v1" />
-                                                <path d="M12 17v1" />
-                                            </svg>
-                                            Tính thuế
-                                        </button>
-                                    </div>
-                                    <div class="col-12 col-sm-4 min-vw-33">
-                                        <button type="button" class="btn btn-outline-yellow w-100">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M12 5l0 14" />
-                                                <path d="M5 12l14 0" />
-                                            </svg>
-                                            Thêm thu nhập
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">Tiêu đề phần hiển thị kết quả đã tính toán</h3>
+                                <div class="card-header border-0">
+                                    <h3 class="card-title">Kết quả tính thuế</h3>
+                                </div>
+                                <div class="card-body pt-1">
                                     <div class="p-3 pt-0">
-                                        <table class="table table-vcenter card-table">
-                                            <caption class="caption-top text-end text-green fs-5">(Tiền tệ: VND)
-                                            </caption>
+                                        <table class="table table-vcenter card-table placeholder-glow js-result-block">
                                             <tbody>
-                                                <tr class="bg-dark-lt">
-                                                    <td class="fw-bold text-dark text-end">Lương GROSS</td>
-                                                    <td class="text-secondary text-end">10,000</td>
+                                                <tr>
+                                                    <td class="text-dark fw-bold">Tổng thu nhập Gross</td>
+                                                    <td class="text-secondary w-33 js-values js-11"
+                                                        data-key="grossTotal"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="fw-bold text-dark text-end">Bảo hiểm xã hội (8%)</td>
-                                                    <td class="text-secondary text-end">10,000</td>
-                                                </tr>
-                                                <tr class="bg-dark-lt">
-                                                    <td class="fw-bold text-dark text-end">Bảo hiểm y tế (1.5%)</td>
-                                                    <td class="text-secondary text-end">10,000</td>
+                                                    <td class="text-secondary">BHXH (8%)</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="socialInsurance"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="fw-bold text-dark text-end">Bảo hiểm thất nghiệp (1%)
+                                                    <td class="text-secondary">BHYT (1.5%)</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="healthInsurance"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary">BHTN (1%)</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="unemploymentInsurance"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-dark fw-bold">Thu nhập trước thuế</td>
+                                                    <td class="text-secondary w-33 js-values" data-key="preTaxIncome">
                                                     </td>
-                                                    <td class="text-secondary text-end">10,000</td>
-                                                </tr>
-                                                <tr class="bg-dark-lt">
-                                                    <td class="fw-bold text-dark text-end">Thu nhập trước thuế</td>
-                                                    <td class="text-secondary text-end">10,000</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="fw-bold text-dark text-end">Giảm trừ gia cảnh bản thân
+                                                    <td class="text-secondary">Giảm trừ bản thân</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalDeduction"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary">Giảm trử gia cảnh NPT</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="dependentDeduction"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-dark fw-bold">Thu nhập chịu thuế</td>
+                                                    <td class="text-secondary w-33 js-values" data-key="taxableIncome">
                                                     </td>
-                                                    <td class="text-secondary text-end">10,000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary">Thuế TNCN</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalIncomeTax"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-dark fw-bold ps-5 ps-lg-7" colspan="2">Chi tiết thuế
+                                                        thu
+                                                        nhập cá nhân</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary ps-5 ps-lg-7" colspan="2">Thuế suất</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary ps-5 ps-lg-7">5% - Đến 5 Triệu</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalIncomeTaxRank1"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary ps-5 ps-lg-7">10% - Trên 5 Triệu đến 10
+                                                        Triệu</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalIncomeTaxRank2"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary ps-5 ps-lg-7">15% - Trên 10 Triệu đến 18
+                                                        Triệu
+                                                    </td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalIncomeTaxRank3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary ps-5 ps-lg-7">20% - Trên 18 Triệu đến 32
+                                                        Triệu
+                                                    </td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalIncomeTaxRank4"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary ps-5 ps-lg-7">25% - Trên 32 Triệu đến 52
+                                                        Triệu
+                                                    </td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalIncomeTaxRank5"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary ps-5 ps-lg-7">30% - Trên 52 Triệu đến 80
+                                                        Triệu
+                                                    </td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalIncomeTaxRank6"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-secondary ps-5 ps-lg-7">35% - Trên 80 Triệu</td>
+                                                    <td class="text-secondary w-33 js-values"
+                                                        data-key="personalIncomeTaxRank7"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-dark fw-bold">Lương NET</td>
+                                                    <td class="text-secondary w-33 js-values" data-key="netSalary"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-deck row-cards mt-2">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title fs-3">
-                                        Hướng dẫn
-                                    </div>
-                                    <div class="mb-2 d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-info-square-rounded me-2 text-green">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 9h.01" />
-                                            <path d="M11 12h1v4h1" />
-                                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-                                        </svg>
-                                        <span class="text-break">
-                                            Áp dụng mức lương cơ sở mới nhất có hiệu lực từ ngày 01/07/2024 (Theo Nghị
-                                            định
-                                            số 73/2024/NĐ-CP)
-                                        </span>
-                                    </div>
-                                    <div class="mb-2 d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-info-square-rounded me-2 text-green">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 9h.01" />
-                                            <path d="M11 12h1v4h1" />
-                                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-                                        </svg>
-                                        <span class="text-break">
-                                            Áp dụng mức lương tối thiểu vùng mới nhất có hiệu lực từ ngày 01/07/2024
-                                            (Theo
-                                            Nghị định 74/2024/NĐ-CP)
-                                        </span>
-                                    </div>
-                                    <div class="mb-2 d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-info-square-rounded me-2 text-green">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 9h.01" />
-                                            <path d="M11 12h1v4h1" />
-                                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-                                        </svg>
-                                        <span class="text-break">
-                                            Áp dụng mức giảm trừ gia cảnh mới nhất 11 triệu đồng/tháng (132 triệu
-                                            đồng/năm)
-                                            với người nộp thuế và 4,4 triệu đồng/tháng với mỗi người phụ thuộc (Theo
-                                            Nghị
-                                            Quyết số 954/2020/UBTVQH14)
-                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -295,48 +314,27 @@
             </div>
             <footer class="footer d-print-none">
                 <div class="container-xl">
-                    <div class="row flex-row-reverse">
-                        <div class="col-12 col-md-6 col-lg-7 mt-3 mt-md-0 ms-md-auto">
-                            <div class="row text-center align-items-center">
-                                <div class="datagrid col-12 mt-3 mt-sm-0">
-                                    <div class="datagrid-item">
-                                        <div class="datagrid-title fs-5">Về chúng tôi</div>
-                                        <div class="row flex-column">
-                                            <a href="#" class="datagrid-content link-light mt-1">Giới thiệu</a>
-                                            <a href="#" class="datagrid-content link-light mt-1">Tuyển dụng</a>
-                                            <a href="#" class="datagrid-content link-light mt-1">Liên hệ</a>
-                                            <a href="#" class="datagrid-content link-light mt-1">Q&A</a>
-                                            <a href="#" class="datagrid-content link-light mt-1">Chính sách bảo
-                                                mật</a>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="col-12">
+                        <div class="card text-white bg-transparent">
+                            <div class="card-header border-0">
+                                <h3 class="card-title">
+                                    <a href="/">
+                                        <img src="./dist/images/logo.svg?version=1728835534" width="110" height="32"
+                                            alt="Tabler" class="navbar-brand-image">
+                                    </a>
+                                </h3>
                             </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-5 mt-3 mt-md-0">
-
-                            <div class="card text-white bg-transparent">
-                                <div class="card-body bg-transparent py-0">
-                                    <div class="card-title fs-3">
-                                        <a href="/">
-                                            <img src="./dist/images/logo.svg?version=1727976439" width="110" height="32" alt="Tabler"
-                                                class="navbar-brand-image">
-                                        </a>
-                                    </div>
-                                    <div class="mb-2 d-flex">
-                                        <span class="text-break">
-                                            Lorem Ipsum is
-                                            simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                            been the industry's standard dummy text ever since the 1500s, when an
-                                            unknown printer took a galley of type and scrambled it to make a type
-                                            specimen book.
-                                        </span>
+                            <div class="card-body bg-transparent py-0">
+                                <div class="d-flex d-grid gap-5 justify-content-between flex-column flex-sm-row">
+                                    <div class="mb-4">
+                                        <span class="text-break">Công ty TNHH Thương Mại Dịch Vụ Truyền Thông
+                                            Snaps</span>
                                     </div>
                                     <div class="mb-2 d-flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building me-2 text-yellow">
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-building me-2 text-yellow col-auto">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M3 21l18 0" />
                                             <path d="M9 8l1 0" />
@@ -347,9 +345,9 @@
                                             <path d="M14 16l1 0" />
                                             <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" />
                                         </svg>
-                                        <span class="text-break w-75">
-                                            GoldSeason số 47 Nguyễn Tuân,
-                                            P.Thanh Xuân Trung, Q.Thanh Xuân, Hà Nội
+                                        <span class="text-break">
+                                            Lầu 2, 7/17 + 09/17 + 11/17 + 13/17 đường Nguyễn Trãi, Phường Bến Thành,
+                                            Quận 1, Thành phố Hồ Chí Minh, Việt Nam
                                         </span>
                                     </div>
                                     <div class="mb-2 d-flex">
@@ -375,37 +373,37 @@
                                         </svg>
                                         <a class="text-break text-white" href="mailto:test@gmail.com">test@gmail.com</a>
                                     </div>
-                                    <div class="mt-5">
-                                        <span class="text-white">Kết nối với chúng tôi</span>
-                                        <div class="d-flex d-grid gap-3 my-2">
-                                            <a href="#facebook" title="Facebook" data-bs-toggle="tooltip"
-                                                data-bs-placement="bottom">
-                                                <span class="bg-facebook text-white avatar">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path
-                                                            d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
-                                                    </svg>
-                                                </span>
-                                            </a>
-                                            <a href="#youtube">
-                                                <span class="bg-youtube text-white avatar" title="Youtube"
-                                                    data-bs-toggle="tooltip" data-bs-placement="bottom">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-brand-youtube">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path
-                                                            d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
-                                                        <path d="M10 9l5 3l-5 3z" />
-                                                    </svg>
-                                                </span>
-                                            </a>
-                                        </div>
+                                </div>
+                                <div class="mt-5">
+                                    <span class="text-white">Kết nối với chúng tôi</span>
+                                    <div class="d-flex d-grid gap-3 my-2">
+                                        <a href="#facebook" title="Facebook" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom">
+                                            <span class="bg-facebook text-white avatar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path
+                                                        d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                                                </svg>
+                                            </span>
+                                        </a>
+                                        <a href="#youtube">
+                                            <span class="bg-youtube text-white avatar" title="Youtube"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-brand-youtube">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path
+                                                        d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+                                                    <path d="M10 9l5 3l-5 3z" />
+                                                </svg>
+                                            </span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -418,8 +416,48 @@
                 </div>
             </footer>
         </div>
+
+        <button class="btn btn-primary p-3 btn-go-to-top" data-js-id="btn-go-to-top" title="Cuộn lên"
+            data-bs-toggle="tooltip" data-bs-placement="top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-up m-0">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 15l6 -6l6 6" />
+            </svg>
+        </button>
     </div>
-    <script src="./dist/js/index.min.js?version=1727976439" defer></script>
+    <!-- Template area -->
+    <script type="text/template" data-template-id="other-income-tmp">
+        <div class="mb-3 js-other-income-input">
+            <div class="input-group input-group-flat">
+                <input type="text" class="form-control"
+                    placeholder="Thu nhập phụ ${index}..." autocomplete="off"
+                    name="secondary_income_${index}">
+                <span class="input-group-text fs-4">
+                    <span class="link-secondary"
+                        onclick="this.parentElement.previousElementSibling.focus()">VND</span>
+                    <a href="javascript:;" class="link-secondary ms-2 js-remove-other-income"
+                        title="Xóa" data-bs-toggle="tooltip">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                            width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M18 6l-12 12" />
+                            <path d="M6 6l12 12" />
+                        </svg>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" data-template-id="placeholder-tmp">
+        <div class="placeholder w-100 bg-tabler"></div>
+    </script>
+    <!-- End template are -->
+    <script src="./dist/js/index.min.js?version=1728835534" defer></script>
 </body>
 
 </html>
