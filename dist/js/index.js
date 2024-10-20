@@ -8667,14 +8667,16 @@
             const personalDeduction = this.#calculatePersonalDeduction(taxFormData);
             const dependentDeduction = this.#calculateDependentDeduction(taxFormData);
             const deductionTotal = personalDeduction + dependentDeduction;
-            const personalIncomeTaxRank1 = this.#calculatePersonalIncomeTaxRank1(taxFormData.getMainIncome(), deductionTotal);
-            const personalIncomeTaxRank2 = this.#calculatePersonalIncomeTaxRank2(taxFormData.getMainIncome(), deductionTotal);
-            const personalIncomeTaxRank3 = this.#calculatePersonalIncomeTaxRank3(taxFormData.getMainIncome(), deductionTotal);
-            const personalIncomeTaxRank4 = this.#calculatePersonalIncomeTaxRank4(taxFormData.getMainIncome(), deductionTotal);
-            const personalIncomeTaxRank5 = this.#calculatePersonalIncomeTaxRank5(taxFormData.getMainIncome(), deductionTotal);
-            const personalIncomeTaxRank6 = this.#calculatePersonalIncomeTaxRank6(taxFormData.getMainIncome(), deductionTotal);
-            const personalIncomeTaxRank7 = this.#calculatePersonalIncomeTaxRank7(taxFormData.getMainIncome(), deductionTotal);
-            const personalIncomeTax = this.#calculatePersonalIncomeTax(
+            let netSalary = taxFormData.getMainIncome();
+
+            let personalIncomeTaxRank1 = this.#calculatePersonalIncomeTaxRank1(netSalary, deductionTotal);
+            let personalIncomeTaxRank2 = this.#calculatePersonalIncomeTaxRank2(netSalary, deductionTotal);
+            let personalIncomeTaxRank3 = this.#calculatePersonalIncomeTaxRank3(netSalary, deductionTotal);
+            let personalIncomeTaxRank4 = this.#calculatePersonalIncomeTaxRank4(netSalary, deductionTotal);
+            let personalIncomeTaxRank5 = this.#calculatePersonalIncomeTaxRank5(netSalary, deductionTotal);
+            let personalIncomeTaxRank6 = this.#calculatePersonalIncomeTaxRank6(netSalary, deductionTotal);
+            let personalIncomeTaxRank7 = this.#calculatePersonalIncomeTaxRank7(netSalary, deductionTotal);
+            let personalIncomeTax = this.#calculatePersonalIncomeTax(
                 personalIncomeTaxRank1,
                 personalIncomeTaxRank2,
                 personalIncomeTaxRank3,
@@ -8683,15 +8685,42 @@
                 personalIncomeTaxRank6,
                 personalIncomeTaxRank7
             );
-            const preTaxIncome = this.#calculatePreTaxIncome(taxFormData.getMainIncome(), personalIncomeTax);
-            const taxableIncome = this.#calculateTaxableIncome(preTaxIncome, personalDeduction, dependentDeduction);
-            const grossTotal = this.#calculateGrossTotal(taxFormData, preTaxIncome);
+            let preTaxIncome = this.#calculatePreTaxIncome(netSalary, personalIncomeTax);
+            let grossTotal = this.#calculateGrossTotal(taxFormData, preTaxIncome);
             if (taxFormData.isInsuranceSalaryOnGross()) {
                 taxFormData.setInsuranceSalary(grossTotal);
             }
             const socialInsurance = this.#calculateSocialInsurance(taxFormData);
             const healthInsurance = this.#calculateHealthInsurance(taxFormData);
             const unemploymentInsurance = this.#calculateUnemploymentInsurance(taxFormData);
+
+            const secondaryIncome = taxFormData.getSecondaryIncome().reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+            //Handle for case has secondary incomes
+            //TODO: recalculate
+            if (secondaryIncome > 0) {
+                preTaxIncome += secondaryIncome;
+                grossTotal += secondaryIncome;
+            }
+
+            const taxableIncome = this.#calculateTaxableIncome(preTaxIncome, personalDeduction, dependentDeduction);
+
+            personalIncomeTaxRank1 = this.#calculatePersonalIncomeTaxRank1ByTaxableIncome(taxableIncome);
+            personalIncomeTaxRank2 = this.#calculatePersonalIncomeTaxRank2ByTaxableIncome(taxableIncome);
+            personalIncomeTaxRank3 = this.#calculatePersonalIncomeTaxRank3ByTaxableIncome(taxableIncome);
+            personalIncomeTaxRank4 = this.#calculatePersonalIncomeTaxRank4ByTaxableIncome(taxableIncome);
+            personalIncomeTaxRank5 = this.#calculatePersonalIncomeTaxRank5ByTaxableIncome(taxableIncome);
+            personalIncomeTaxRank6 = this.#calculatePersonalIncomeTaxRank6ByTaxableIncome(taxableIncome);
+            personalIncomeTaxRank7 = this.#calculatePersonalIncomeTaxRank7ByTaxableIncome(taxableIncome);
+            personalIncomeTax = this.#calculatePersonalIncomeTax(
+                personalIncomeTaxRank1,
+                personalIncomeTaxRank2,
+                personalIncomeTaxRank3,
+                personalIncomeTaxRank4,
+                personalIncomeTaxRank5,
+                personalIncomeTaxRank6,
+                personalIncomeTaxRank7
+            );
 
             result.setGrossTotal(grossTotal)
                 .setSocialInsurance(socialInsurance)
@@ -8963,6 +8992,112 @@
 
             if (netSalary > minNetSalary) {
                 return this.#roundedValue(((20 * netSalary) - 7 * (deductionAmount + TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK6) + (20 * TaxConfiguration.MAX_PERSONAL_INCOME_TAX_AMOUNT_RANK6)) / 13) - netSalary - TaxConfiguration.MAX_PERSONAL_INCOME_TAX_AMOUNT_RANK6;
+            }
+
+            return 0;
+        }
+
+
+
+        /**
+         * @param {number} taxableIncome
+         * @returns {number} 
+         */
+        #calculatePersonalIncomeTaxRank1ByTaxableIncome(taxableIncome) {
+            if (taxableIncome > 0) {
+                const remainder = taxableIncome >= TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK1 ? taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK1 : 0;
+                taxableIncome = taxableIncome - remainder;
+
+                return taxableIncome * TaxConfiguration.PERSONAL_INCOME_TAX_RANK1_PERCENTAGE;
+            }
+
+            return 0;
+        }
+
+        /**
+         * @param {number} taxableIncome
+         * @returns {number} 
+         */
+        #calculatePersonalIncomeTaxRank2ByTaxableIncome(taxableIncome) {
+            if (taxableIncome > 0 && taxableIncome > TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK1) {
+                const remainder = taxableIncome >= TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK2 ? taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK2 : 0;
+                taxableIncome = taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK1 - remainder;
+
+                return taxableIncome * TaxConfiguration.PERSONAL_INCOME_TAX_RANK2_PERCENTAGE;
+            }
+
+            return 0;
+        }
+
+        /**
+         * @param {number} taxableIncome
+         * @returns {number} 
+         */
+        #calculatePersonalIncomeTaxRank3ByTaxableIncome(taxableIncome) {
+            if (taxableIncome > 0 && taxableIncome > TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK2) {
+                const remainder = taxableIncome >= TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK3 ? taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK3 : 0;
+                taxableIncome = taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK2 - remainder;
+
+                return taxableIncome * TaxConfiguration.PERSONAL_INCOME_TAX_RANK3_PERCENTAGE;
+            }
+
+            return 0;
+        }
+
+        /**
+         * @param {number} taxableIncome
+         * @returns {number} 
+         */
+        #calculatePersonalIncomeTaxRank4ByTaxableIncome(taxableIncome) {
+            if (taxableIncome > 0 && taxableIncome > TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK3) {
+                const remainder = taxableIncome >= TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK4 ? taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK4 : 0;
+                taxableIncome = taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK3 - remainder;
+
+                return taxableIncome * TaxConfiguration.PERSONAL_INCOME_TAX_RANK4_PERCENTAGE;
+            }
+
+            return 0;
+        }
+
+        /**
+         * @param {number} taxableIncome
+         * @returns {number} 
+         */
+        #calculatePersonalIncomeTaxRank5ByTaxableIncome(taxableIncome) {
+            if (taxableIncome > 0 && taxableIncome > TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK4) {
+                const remainder = taxableIncome >= TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK5 ? taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK5 : 0;
+                taxableIncome = taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK4 - remainder;
+
+                return taxableIncome * TaxConfiguration.PERSONAL_INCOME_TAX_RANK5_PERCENTAGE;
+            }
+
+            return 0;
+        }
+
+        /**
+         * @param {number} taxableIncome
+         * @returns {number} 
+         */
+        #calculatePersonalIncomeTaxRank6ByTaxableIncome(taxableIncome) {
+            if (taxableIncome > 0 && taxableIncome > TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK5) {
+                const remainder = taxableIncome >= TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK6 ? taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK6 : 0;
+                taxableIncome = taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK5 - remainder;
+
+                return taxableIncome * TaxConfiguration.PERSONAL_INCOME_TAX_RANK6_PERCENTAGE;
+            }
+
+            return 0;
+        }
+
+        /**
+         * @param {number} taxableIncome
+         * @returns {number} 
+         */
+        #calculatePersonalIncomeTaxRank7ByTaxableIncome(taxableIncome) {
+            if (taxableIncome > 0 && taxableIncome > TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK6) {
+                taxableIncome = taxableIncome - TaxConfiguration.MAX_AMOUNT_TO_CALCULATE_TAX_RANK6;
+
+                return taxableIncome * TaxConfiguration.PERSONAL_INCOME_TAX_RANK7_PERCENTAGE;
             }
 
             return 0;
