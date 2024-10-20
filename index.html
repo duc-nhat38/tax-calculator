@@ -9,29 +9,43 @@
 
     <!-- Meta Tags -->
     <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Công ty TNHH Thương Mại Dịch Vụ Truyền Thông Snaps">
+    <meta property="description" content="Tính toán thuế thu nhập cá nhân theo quy định pháp luật Việt Nam nhanh chóng và chính xác chỉ trong vài bước. 
+        Chuyển đổi từ gross sang net và ngược lại. 
+        Dễ dàng theo dõi thu nhập thực tế của bạn với công cụ trực tuyến đơn giản!">
+    <meta name="keywords"
+        content="tính thuế thu nhập,công cụ tính thuế,tính toán thuế thu nhập cá nhân,thuế thu nhập mới nhất,tính thuế online,tool tính thuế online,tính thuế từ gross sang net,tính thuế từ net sang gross">
+
+    <!-- Meta tags for Open Graph Protocol -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Tên của trang web bạn">
+    <meta property="og:locale" content="vi_VN">
     <meta property="og:title" content="Tính toán thuế trực tuyến - Chính xác và nhanh chóng theo luật thuế mới nhất">
-    <meta property="og:description"
-        content="Tính toán thuế thu nhập cá nhân theo quy định pháp luật Việt Nam nhanh chóng và chính xác chỉ trong vài bước.">
+    <meta property="og:description" content="Tính toán thuế thu nhập cá nhân theo quy định pháp luật Việt Nam nhanh chóng và chính xác chỉ trong vài bước. 
+        Chuyển đổi từ gross sang net và ngược lại. 
+        Dễ dàng theo dõi thu nhập thực tế của bạn với công cụ trực tuyến đơn giản!">
     <meta property="og:image" content="URL của hình ảnh">
     <meta property="og:url" content="URL của trang">
 
-    <meta name="twitter:card" content="summary_large_image">
+    <!-- Meta tags for Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="Tên của trang web bạn">
     <meta name="twitter:title" content="Tính toán thuế trực tuyến - Chính xác và nhanh chóng theo luật thuế mới nhất">
-    <meta name="twitter:description"
-        content="Tính toán thuế thu nhập cá nhân theo quy định pháp luật Việt Nam nhanh chóng và chính xác chỉ trong vài bước.">
+    <meta name="twitter:description" content="Tính toán thuế thu nhập cá nhân theo quy định pháp luật Việt Nam nhanh chóng và chính xác chỉ trong vài bước. 
+        Chuyển đổi từ gross sang net và ngược lại. 
+        Dễ dàng theo dõi thu nhập thực tế của bạn với công cụ trực tuyến đơn giản!">
     <meta name="twitter:image" content="URL của hình ảnh">
 
     <!-- CSS files -->
-    <link href="./dist/css/index.min.css?version=1728835534" rel="stylesheet" />
+    <link href="./dist/css/index.min.css?version=1729413069" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <style>
-        @import url('https://rsms.me/inter/inter.css');
-
         :root {
-            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-        }
-
-        body {
-            font-feature-settings: "cv03", "cv04", "cv11";
+            --tblr-font-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
         }
     </style>
 </head>
@@ -44,7 +58,7 @@
                 <div class="container-xl">
                     <div class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                         <a href="/">
-                            <img src="./dist/images/logo.svg?version=1728835534" width="110" height="32"
+                            <img src="./dist/images/logo.svg?version=1729413069" width="110" height="32"
                                 alt="Công ty TNHH Thương Mại Dịch Vụ Truyền Thông Snaps" class="navbar-brand-image">
                         </a>
                     </div>
@@ -100,11 +114,26 @@
                         <div class="col-md-6 d-grid gap-2">
                             <div class="card">
                                 <div class="card-header border-0">
-                                    <h3 class="card-title">Thông tin thu nhập</h3>
+                                    <span class="card-title">Thông tin thu nhập</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="p-3 pt-0">
                                         <form action="#" method="get" class="js-tax-form">
+                                            <div class="mb-3">
+                                                <div class="form-label required">Loại thu nhập</div>
+                                                <div>
+                                                    <label class="form-check form-check-inline mb-sm-0 cursor-pointer">
+                                                        <input class="form-check-input cursor-pointer" type="radio"
+                                                            name="income_type" value="1" checked>
+                                                        <span class="form-check-label">Luơng Gross</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline mb-0 cursor-pointer">
+                                                        <input class="form-check-input cursor-pointer" type="radio"
+                                                            name="income_type" value="2">
+                                                        <span class="form-check-label">Luơng NET</span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                             <div class="mb-3">
                                                 <label class="form-label required">Thu nhập chính</label>
                                                 <div class="input-group input-group-flat">
@@ -116,13 +145,29 @@
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Lương đóng bảo hiểm</label>
-                                                <div class="input-group input-group-flat">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Lương đóng bảo hiểm..." name="insurance_salary"
-                                                        data-mask-placeholder="Lương đóng bảo hiểm...">
-                                                    <span class="input-group-text fs-4"
-                                                        onclick="this.previousElementSibling.focus()">VND</span>
+                                                <div class="form-label required">Lương đóng bảo hiểm</div>
+                                                <div>
+                                                    <label class="form-check cursor-pointer mb-3">
+                                                        <input class="form-check-input cursor-pointer" type="radio"
+                                                            onclick="this.parentElement.nextElementSibling.children[1].children[0].setAttribute('disabled', 'true')"
+                                                            name="insurance_salary_type" value="1" checked>
+                                                        <span class="form-check-label">Full lương Gross</span>
+                                                    </label>
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <label class="form-check mb-0">
+                                                            <input class="form-check-input cursor-pointer" type="radio"
+                                                                name="insurance_salary_type" value="2"
+                                                                onclick="this.parentElement.nextElementSibling.children[0].removeAttribute('disabled')">
+                                                        </label>
+                                                        <div class="input-group input-group-flat">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Lương đóng bảo hiểm..."
+                                                                name="insurance_salary" disabled>
+                                                            <span class="input-group-text fs-4"
+                                                                onclick="this.previousElementSibling.focus()">VND</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="invalid-feedback ms-5"></div>
                                                 </div>
                                             </div>
                                             <div class="mb-3">
@@ -139,7 +184,7 @@
                                             </div>
                                             <div class="mb-3 text-end">
                                                 <button type="button"
-                                                    class="btn btn-outline-yellow js-add-secondary-income-btn">
+                                                    class="btn btn-outline-primary js-add-secondary-income-btn">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         class="icon" viewBox="0 0 24 24" fill="none"
                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -153,13 +198,37 @@
                                                 </button>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label required">Khu vực sinh sống</label>
-                                                <select name="area" class="form-select">
-                                                    <option value="1">Khu vực I</option>
-                                                    <option value="2">Khu vực II</option>
-                                                    <option value="3">Khu vực III</option>
-                                                    <option value="4">Khu vực IV</option>
-                                                </select>
+                                                <label class="form-label">Số người thân phụ thuộc</label>
+                                                <div class="input-group input-group-flat">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Số người thân phụ thuộc..."
+                                                        name="dependent_deduction" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="form-label required">Vùng</div>
+                                                <div>
+                                                    <label class="form-check form-check-inline mb-sm-0 cursor-pointer">
+                                                        <input class="form-check-input cursor-pointer" type="radio"
+                                                            name="area" value="1" checked>
+                                                        <span class="form-check-label">Vùng 1</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline mb-sm-0 cursor-pointer">
+                                                        <input class="form-check-input cursor-pointer" type="radio"
+                                                            name="area" value="2">
+                                                        <span class="form-check-label">Vùng 2</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline mb-sm-0 cursor-pointer">
+                                                        <input class="form-check-input cursor-pointer" type="radio"
+                                                            name="area" value="2">
+                                                        <span class="form-check-label">Vùng 3</span>
+                                                    </label>
+                                                    <label class="form-check form-check-inline mb-0 cursor-pointer">
+                                                        <input class="form-check-input cursor-pointer" type="radio"
+                                                            name="area" value="4">
+                                                        <span class="form-check-label">Vùng 4</span>
+                                                    </label>
+                                                </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Số người thân phụ thuộc</label>
@@ -196,7 +265,7 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header border-0">
-                                    <h3 class="card-title">Kết quả tính thuế</h3>
+                                    <span class="card-title">Kết quả tính thuế</span>
                                 </div>
                                 <div class="card-body pt-1">
                                     <div class="p-3 pt-0">
@@ -248,56 +317,95 @@
                                                         data-key="personalIncomeTax"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="text-dark fw-bold ps-5 ps-lg-7" colspan="2">Chi tiết thuế
-                                                        thu
-                                                        nhập cá nhân</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-secondary ps-5 ps-lg-7" colspan="2">Thuế suất</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-secondary ps-5 ps-lg-7">5% - Đến 5 Triệu</td>
-                                                    <td class="text-secondary w-33 js-values"
-                                                        data-key="personalIncomeTaxRank1"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-secondary ps-5 ps-lg-7">10% - Trên 5 Triệu đến 10
-                                                        Triệu</td>
-                                                    <td class="text-secondary w-33 js-values"
-                                                        data-key="personalIncomeTaxRank2"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-secondary ps-5 ps-lg-7">15% - Trên 10 Triệu đến 18
-                                                        Triệu
+                                                    <td colspan="2" class="p-0">
+                                                        <div class="accordion" id="accordion-example">
+                                                            <div class="accordion-item border-0">
+                                                                <div class="accordion-header" id="heading-1">
+                                                                    <button
+                                                                        class="accordion-button border-0 text-dark fw-bold"
+                                                                        type="button"
+                                                                        style="padding: 12px 12px 12px 20px !important;"
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#collapse-1"
+                                                                        aria-expanded="true">
+                                                                        Chi tiết thuế thu nhập cá nhân
+                                                                    </button>
+                                                                </div>
+                                                                <div id="collapse-1"
+                                                                    class="accordion-collapse collapse show"
+                                                                    data-bs-parent="#accordion-example">
+                                                                    <div class="accordion-body p-0 border-top">
+                                                                        <table class="table table-vcenter card-table">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="text-secondary"
+                                                                                        colspan="2">Thuế suất</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-secondary">
+                                                                                        5% - Đến 5 Triệu</td>
+                                                                                    <td class="text-secondary w-33 js-values"
+                                                                                        data-key="personalIncomeTaxRank1">
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-secondary">
+                                                                                        10% - Trên 5 Triệu đến 10
+                                                                                        Triệu</td>
+                                                                                    <td class="text-secondary w-33 js-values"
+                                                                                        data-key="personalIncomeTaxRank2">
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-secondary">
+                                                                                        15% - Trên 10 Triệu đến 18
+                                                                                        Triệu
+                                                                                    </td>
+                                                                                    <td class="text-secondary w-33 js-values"
+                                                                                        data-key="personalIncomeTaxRank3">
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-secondary">
+                                                                                        20% - Trên 18 Triệu đến 32
+                                                                                        Triệu
+                                                                                    </td>
+                                                                                    <td class="text-secondary w-33 js-values"
+                                                                                        data-key="personalIncomeTaxRank4">
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-secondary">
+                                                                                        25% - Trên 32 Triệu đến 52
+                                                                                        Triệu
+                                                                                    </td>
+                                                                                    <td class="text-secondary w-33 js-values"
+                                                                                        data-key="personalIncomeTaxRank5">
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-secondary">
+                                                                                        30% - Trên 52 Triệu đến 80
+                                                                                        Triệu
+                                                                                    </td>
+                                                                                    <td class="text-secondary w-33 js-values"
+                                                                                        data-key="personalIncomeTaxRank6">
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-secondary">
+                                                                                        35% - Trên 80 Triệu</td>
+                                                                                    <td class="text-secondary w-33 js-values"
+                                                                                        data-key="personalIncomeTaxRank7">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
-                                                    <td class="text-secondary w-33 js-values"
-                                                        data-key="personalIncomeTaxRank3"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-secondary ps-5 ps-lg-7">20% - Trên 18 Triệu đến 32
-                                                        Triệu
-                                                    </td>
-                                                    <td class="text-secondary w-33 js-values"
-                                                        data-key="personalIncomeTaxRank4"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-secondary ps-5 ps-lg-7">25% - Trên 32 Triệu đến 52
-                                                        Triệu
-                                                    </td>
-                                                    <td class="text-secondary w-33 js-values"
-                                                        data-key="personalIncomeTaxRank5"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-secondary ps-5 ps-lg-7">30% - Trên 52 Triệu đến 80
-                                                        Triệu
-                                                    </td>
-                                                    <td class="text-secondary w-33 js-values"
-                                                        data-key="personalIncomeTaxRank6"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-secondary ps-5 ps-lg-7">35% - Trên 80 Triệu</td>
-                                                    <td class="text-secondary w-33 js-values"
-                                                        data-key="personalIncomeTaxRank7"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-dark fw-bold">Lương NET</td>
@@ -319,8 +427,9 @@
                             <div class="card-header border-0">
                                 <h3 class="card-title">
                                     <a href="/">
-                                        <img src="./dist/images/logo.svg?version=1728835534" width="110" height="32"
-                                            alt="Tabler" class="navbar-brand-image">
+                                        <img src="./dist/images/logo.svg?version=1729413069" width="110" height="32"
+                                            alt="Công ty TNHH Thương Mại Dịch Vụ Truyền Thông Snaps"
+                                            class="navbar-brand-image">
                                     </a>
                                 </h3>
                             </div>
@@ -457,7 +566,7 @@
         <div class="placeholder w-100 bg-tabler"></div>
     </script>
     <!-- End template are -->
-    <script src="./dist/js/index.min.js?version=1728835534" defer></script>
+    <script src="./dist/js/index.min.js?version=1729413069" defer></script>
 </body>
 
 </html>
