@@ -8754,9 +8754,9 @@
                 personalIncomeTaxRank7
             );
             const preTaxIncome = this.#calculatePreTaxIncome(netSalary, personalIncomeTax);
-            const grossTotal = this.#calculateGrossTotal(taxFormData, preTaxIncome, secondaryIncome);
+            const gross = this.#calculateGross(taxFormData, preTaxIncome, secondaryIncomeGross);
             if (taxFormData.isInsuranceSalaryOnGross()) {
-                taxFormData.setInsuranceSalary(grossTotal);
+                taxFormData.setInsuranceSalary(gross);
             }
             const socialInsurance = this.#calculateSocialInsurance(taxFormData);
             const healthInsurance = this.#calculateHealthInsurance(taxFormData);
@@ -8766,7 +8766,7 @@
 
             const taxableIncome = this.#calculateTaxableIncome(preTaxIncome, personalDeduction, dependentDeduction);
 
-            result.setGrossTotal(grossTotal)
+            result.setGrossTotal(this.#calculateGrossTotal(gross, secondaryIncomeGross))
                 .setSocialInsurance(socialInsurance)
                 .setHealthInsurance(healthInsurance)
                 .setUnemploymentInsurance(unemploymentInsurance)
@@ -8791,12 +8791,21 @@
         }
 
         /**
+         * @param {number} gross
+         * @param {number} secondaryIncomeGross
+         * @returns {number} 
+         */
+        #calculateGrossTotal(gross, secondaryIncomeGross) {
+            return gross + secondaryIncomeGross;
+        }
+
+        /**
          * @param {TaxFormData} taxFormData
          * @param {number} taxFormData
          * @param {number} taxFormData
          * @returns {number} 
          */
-        #calculateGrossTotal(taxFormData, preTaxIncome, secondaryIncomeGross) {
+        #calculateGross(taxFormData, preTaxIncome, secondaryIncomeGross) {
             const preTaxIncomeExcludeSecondaryIncome = preTaxIncome - secondaryIncomeGross;
             if (taxFormData.isInsuranceSalaryOnGross()) {
                 const maxMonthlyBaseSalary = this.#areaService.getMaxMonthlyBaseSalary();
@@ -8806,7 +8815,7 @@
                 const isAllInsuranceUnlimited = preTaxIncomeExcludeSecondaryIncome < (smallestMaxSalary * 89.5 / 100);
 
                 if (isAllInsuranceUnlimited) {
-                    return this.#roundedValue(200 * preTaxIncomeExcludeSecondaryIncome / 179 + secondaryIncomeGross);
+                    return this.#roundedValue(200 * preTaxIncomeExcludeSecondaryIncome / 179);
                 }
 
                 //Social insurance and health insurance reach limits
@@ -8815,17 +8824,17 @@
                 const isUnemploymentInsuranceUnlimited = preTaxIncomeExcludeSecondaryIncome < ((maxMonthlyRegionalMinimumWage * 99 / 100) - (maxMonthlyBaseSalary * 9.5 / 100));
 
                 if (isInsurancesReachLimits && isUnemploymentInsuranceUnlimited) {
-                    return this.#roundedValue(((100 * preTaxIncomeExcludeSecondaryIncome) + (9.5 * maxMonthlyBaseSalary)) / 99 + secondaryIncomeGross);
+                    return this.#roundedValue(((100 * preTaxIncomeExcludeSecondaryIncome) + (9.5 * maxMonthlyBaseSalary)) / 99);
                 }
 
-                return this.#roundedValue(((100 * preTaxIncomeExcludeSecondaryIncome) + (9.5 * maxMonthlyBaseSalary) + maxMonthlyRegionalMinimumWage) / 100 + secondaryIncomeGross);
+                return this.#roundedValue(((100 * preTaxIncomeExcludeSecondaryIncome) + (9.5 * maxMonthlyBaseSalary) + maxMonthlyRegionalMinimumWage) / 100);
             }
 
             const socialInsurance = this.#calculateSocialInsurance(taxFormData);
             const healthInsurance = this.#calculateHealthInsurance(taxFormData);
             const unemploymentInsurance = this.#calculateUnemploymentInsurance(taxFormData);
 
-            return preTaxIncomeExcludeSecondaryIncome + socialInsurance + healthInsurance + unemploymentInsurance + secondaryIncomeGross;
+            return preTaxIncomeExcludeSecondaryIncome + socialInsurance + healthInsurance + unemploymentInsurance;
         }
 
         /**
