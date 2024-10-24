@@ -8734,7 +8734,6 @@
             const result = this.#resultFactory.create();
 
             const secondaryIncomeGross = this.#calculateSecondaryIncomeGross(taxFormData);
-            const personalIncomeTaxTemporarilySuspended = this.#calculatePersonalIncomeTaxTemporarilySuspended(secondaryIncomeGross);
             const personalDeduction = this.#calculatePersonalDeduction(taxFormData);
             const dependentDeduction = this.#calculateDependentDeduction(taxFormData);
             const deductionTotal = personalDeduction + dependentDeduction;
@@ -8791,6 +8790,7 @@
                 personalIncomeTaxRank7
             );
 
+            const personalIncomeTaxTemporarilySuspended = this.#calculatePersonalIncomeTaxTemporarilySuspended(personalIncomeTaxOnNetSalary, secondaryIncomeGross);
             const outstandingPersonalIncomeTax = this.#calculateOutstandingPersonalIncomeTax(personalIncomeTax, personalIncomeTaxTemporarilySuspended);
             const personalIncomeTaxRefundable = this.#calculatePersonalIncomeTaxRefundable(personalIncomeTax, personalIncomeTaxTemporarilySuspended);
 
@@ -9114,11 +9114,12 @@
         }
 
         /**
-         * @param {TaxFormData} taxFormData
+         * @param {number} personalIncomeTax
+         * @param {number} secondaryIncomeGross
          * @returns {number} 
          */
-        #calculatePersonalIncomeTaxTemporarilySuspended(secondaryIncomeGross) {
-            return this.#roundedValue(secondaryIncomeGross * TaxConfiguration.PERSONAL_INCOME_TAX_TEMPORARILY_SUSPENDED_PERCENTAGE);
+        #calculatePersonalIncomeTaxTemporarilySuspended(personalIncomeTax, secondaryIncomeGross) {
+            return personalIncomeTax + this.#roundedValue(secondaryIncomeGross * TaxConfiguration.PERSONAL_INCOME_TAX_TEMPORARILY_SUSPENDED_PERCENTAGE);
         }
 
         /**
