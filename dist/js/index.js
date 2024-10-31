@@ -7940,11 +7940,11 @@
                 this.#setSubmitButtonLoading(true);
                 this.#disableButtons();
 
-                if (!this.#validate()) {
+                const formData = this.getData();
+
+                if (!this.#validate(formData)) {
                     return false;
                 };
-
-                const formData = this.getData();
 
                 for (const callable of this.#onSubmit) {
                     callable.call(e, formData);
@@ -7994,7 +7994,8 @@
         /**
          * @returns {boolean}
          */
-        #validate() {
+        #validate(formData) {
+            const self = this;
             let isValidated = true;
             const validator = function (element, value, title) {
                 const isEmpty = value === null || value === '';
@@ -8004,6 +8005,12 @@
                     const message = isEmpty ? `Vui lòng nhập ${title.toLowerCase()} của bạn.` : `${title} phải là một số và lớn hơn 0.`;
                     if (isValidated) {
                         element.focus();
+                        const rect = element.getBoundingClientRect();
+                        const offset = 150;
+                        window.scrollTo({
+                            top: rect.top + window.scrollY - offset,
+                            behavior: 'smooth'
+                        });
                     }
                     isValidated = false;
                     element.message.innerHTML = message;
@@ -8016,13 +8023,25 @@
                 }
             }
 
+            const cleanMessage = function (element) {
+                element.message.innerHTML = '';
+                element.message.classList.remove("d-block");
+                element.parentElement.classList.remove("is-invalid");
+            }
+
             const mainIncome = this.getMainIncome().value;
-            validator(this.getMainIncome(), mainIncome, 'Thu nhập chính');
+            const secondaryIncome = formData.getSecondaryIncome();
+
+            cleanMessage(this.getMainIncome());
+            if (!secondaryIncome) {
+                validator(this.getMainIncome(), mainIncome, 'Thu nhập chính');
+            }
 
             const insuranceSalaryType = this.getInsuranceSalaryType().value;
             const insuranceSalary = this.getInsuranceSalary().iMask?.unmaskedValue;
 
-            if (insuranceSalaryType == InsuranceSalaryTypeOption.SPECIFICALLY) {
+            cleanMessage(this.getInsuranceSalary());
+            if (insuranceSalaryType == InsuranceSalaryTypeOption.SPECIFICALLY && mainIncome) {
                 validator(this.getInsuranceSalary(), insuranceSalary, 'Lương đóng bảo hiểm');
             }
 
@@ -8082,10 +8101,10 @@
         }
 
         /**
-         * @returns {array<number>}
+         * @returns {number}
          */
         getSecondaryIncome() {
-            return this.#data?.secondary_income ?? [];
+            return this.#data?.secondary_income ?? 0;
         }
 
         /**
@@ -8093,8 +8112,7 @@
          * @returns {this}
          */
         setSecondaryIncome(values) {
-            const self = this;
-            this.#data.secondary_income = values.map(item => self.#fillterValueNumber(item));
+            const self = this;this.#data.secondary_income = values.reduce((accumulator, currentValue) => accumulator + self.#fillterValueNumber(currentValue), 0);
             return this;
         }
 
@@ -8868,7 +8886,7 @@
          * @returns {number} 
          */
         #calculateSecondaryIncomeGross(taxFormData) {
-            const secondaryIncome = taxFormData.getSecondaryIncome().reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            const secondaryIncome = taxFormData.getSecondaryIncome();
 
             return this.#roundedValue(secondaryIncome * 10 / 9);
         }
@@ -9348,7 +9366,7 @@
          * @returns {number} 
          */
         #calculateSecondaryIncomeGross(taxFormData) {
-            const secondaryIncome = taxFormData.getSecondaryIncome().reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            const secondaryIncome = taxFormData.getSecondaryIncome();
 
             return this.#roundedValue(secondaryIncome * 10 / 9);
         }
